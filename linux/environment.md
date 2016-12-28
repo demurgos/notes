@@ -35,3 +35,7 @@ JAVA_HOME="/foo/bar"
 # This is a comment
 AIR_HOME="/baz/quz/"
 ```
+
+### For a single user
+
+**TODO**: `.bashrc` ?

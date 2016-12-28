@@ -4,7 +4,7 @@
 
 ## Dependencies
 
-- Graphviz
+- [Graphviz](../graphviz/index.md)
 
 ## Installation
 
@@ -15,7 +15,7 @@
 
    - Windows
      
-     1. Save `plantuml.jar` in `C:/Program Files/PlantUML/plantuml.jar`
+     1. Save `plantuml.jar` at `C:/Program Files/PlantUML/plantuml.jar`
      
      2. Create a file `plantuml.cmd` in the same directory with this content:
      
@@ -53,6 +53,10 @@ Open the plugin repositories: **File | Settings.. | Plugins | Browse
 Repositories...**.
  
 Install `PlantUML Integration` and restart your IDE.
+
+### Plugin for Eclipse
+
+**TODO**
 
 [plantuml]: http://plantuml.com/
 [plantuml-download]: http://plantuml.com/download

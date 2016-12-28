@@ -6,7 +6,15 @@ Prefer lowercase names, separate parts with dashes (`-`).
 Use uppercase for conventional files from GNU projects such as `README` or
 `LICENSE`.
 
+**TODO**: What about `Makefile` ?
+
 ## Extensions
+
+Extensions should always be _lowercase_.
+
+Examples:
+- `README.md`
+- `main.ts`
 
 ## Spaces
 

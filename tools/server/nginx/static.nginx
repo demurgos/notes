@@ -1,0 +1,34 @@
+# This configurations serves static files from a directory
+
+# HTTPS
+server {
+  # HTTPS port
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  # Space-separated hostnames (wildcard * is accepted)
+  server_name demurgos.net;
+
+  # Certificates
+  ssl_certificate /etc/letsencrypt/live/demurgos.net/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/demurgos.net/privkey.pem;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+
+  access_log /var/www/demurgos.net/main.access.log;
+  error_log /var/www/demurgos.net/main.errors.log;
+
+  # Root directory of the website
+  root /var/www/demurgos.net/main;
+}
+
+# HTTP
+server {
+  # HTTP port
+  listen 80;
+  listen [::]:80;
+  server_name demurgos.net;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+  return 307 https://$host$request_uri;
+}

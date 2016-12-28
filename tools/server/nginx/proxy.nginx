@@ -1,0 +1,52 @@
+# This configuration sets a reverse proxy for a specific domain
+
+# Define target of the reverse-proxy
+upstream demurgos_net {
+    server 127.0.0.1:8000;
+    keepalive 8;
+}
+
+# HTTPS
+server {
+  # HTTPS port
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  # Space-separated hostnames (wildcard * is accepted)
+  server_name demurgos.net;
+
+  # Certificates
+  ssl_certificate /etc/letsencrypt/live/demurgos.net/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/demurgos.net/privkey.pem;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+
+  access_log /var/www/demurgos.net/access.log;
+  error_log /var/www/demurgos.net/errors.log;
+
+  location / {
+     # Upstream reference
+     proxy_pass http://demurgos_net;
+
+     # Configuration of the proxy
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     proxy_set_header Upgrade $http_upgrade;
+     proxy_set_header Connection 'upgrade';
+     proxy_set_header Host $host;
+     proxy_set_header X-NginX-Proxy true;
+     proxy_cache_bypass $http_upgrade;
+     proxy_redirect off;
+  }
+}
+
+# HTTP
+server {
+  # HTTP port
+  listen 80;
+  listen [::]:80;
+  server_name demurgos.net;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+  return 307 https://$host$request_uri;
+}

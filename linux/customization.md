@@ -11,6 +11,7 @@ The goal of the bold path and prompt on a new line is to better see the distinct
 Include the following lines in your `.bashrc` file:
 
 ```bash
+# Better prompt for normal user
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
     PS1='\e[32m\u@\h\e[0m \e[1m\w\e[0m\n\$ '
@@ -25,6 +26,7 @@ username and host in green, it displays it in red so I can easily see that I am 
 user account.
 
 ```bash
+# Better prompt for root user
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
     PS1='\e[31m\u@\h\e[0m \e[1m\w\e[0m\n\$ '
@@ -60,7 +62,7 @@ type of control sequence. SGR corresponds to [the codepoint `0x6d`][unicode-6d]:
 LETTER M_).
 
 The string of digits and separators between the CSI and _final byte_ represents the style to apply.
-Here the styles I used:
+Here are the styles I used:
 
 - `0`: default rendition
 - `1`: bold

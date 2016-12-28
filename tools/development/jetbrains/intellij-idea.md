@@ -20,5 +20,6 @@ There are two editions:
   licenses][jetbrains-student]. It includes better support for SQL, web and
   other frameworks.
 
+
 [jetbrains-student]: https://www.jetbrains.com/student/
 [intellij-download]: https://www.jetbrains.com/idea/download/

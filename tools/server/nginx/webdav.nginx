@@ -1,0 +1,67 @@
+# This configuration sets a WebDAV server
+
+# HTTPS
+server {
+  # HTTPS port
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  # Space-separated hostnames (wildcard * is accepted)
+  server_name webdav.demurgos.net;
+
+  # Certificates
+  ssl_certificate /etc/letsencrypt/live/demurgos.net/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/demurgos.net/privkey.pem;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+
+  access_log /var/www/demurgos.net/webdav.access.log;
+  error_log /var/www/demurgos.net/webdav.errors.log;
+
+  location / {
+    # Root directory
+    root /var/www/demurgos.net/webdav;
+    # Directory used for transfers
+    client_body_temp_path /var/www/demurgos.net/webdav.client-tmp;
+    # Required by KeePass
+    dav_methods PUT MOVE DELETE COPY;
+    # TODO: What is this for ?
+    create_full_put_path on;
+
+    # Access: require authentication
+    dav_access user:rw;
+    auth_basic "restricted";
+    auth_basic_user_file /var/www/demurgos.net/webdav.htpasswd;
+
+    # KeeWeb headers: CORS
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Credentials' 'true';
+    add_header 'Access-Control-Allow-Methods' 'GET, HEAD, POST, PUT, OPTIONS, MOVE, DELETE, COPY, LOCK, UNLOCK';
+    add_header 'Access-Control-Allow-Headers' 'Authorization,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Accept-Charset,X-Accept,origin,accept,if-match,destination, overwrite';
+    # Cache
+    add_header 'Access-Control-Expose-Headers' 'ETag';
+    add_header 'Access-Control-Max-Age' 1728000;
+    if ($request_method = 'OPTIONS') {
+      add_header 'Content-Type' 'text/plain charset=UTF-8';
+      add_header 'Content-Length' 0;
+      return 204;
+    }
+
+    # limit_except GET {
+    #   allow 192.168.1.0/32;
+    #   deny  all;
+    # }
+  }
+}
+
+# HTTP
+server {
+  # HTTP port
+  listen 80;
+  listen [::]:80;
+  server_name webdav.demurgos.net;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+  # Permanently redirect to HTTPS
+  return 301 https://$host$request_uri;
+}

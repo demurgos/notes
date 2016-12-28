@@ -8,6 +8,11 @@
 
 ## Installation
 
+### Dependencies
+
+- `flashplayerdebugger`
+- `flex`
+
 ### Arch Linux
 
 ```shell
@@ -35,11 +40,21 @@ Github.
 
 **File | Project Structure | Project | Project SDK**: Choose the Haxe SDK.
 If it is not available, add it (select the `haxe` directory in `HaxeToolkit`).
+For Linux: `/usr/share/haxe`.
 
 **File | Project Structure | Modules | \<module\> | Haxe**: Choose NMML and
 select the configuration file.
 
-Add an Haxe run configuration.
+Add a Haxe run configuration.
+
+## Usage
+
+This is not really clear how to structure a project because of the lack of
+documentation. Once I stabilize my project template I'll put it here.
+
+To use assets, _nme_ (Native Media Engine) was the first solution but it looks like
+_openFl_ is a better fork.
+
 
 [haxe-home]: http://haxe.org/
 [haxe-download]: http://haxe.org/download/
