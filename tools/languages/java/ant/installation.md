@@ -1,32 +1,50 @@
 # Installation
 
+Installation of Ant 1.9
+
 ## Dependencies
 
-- [Java Development Kit 8][java-installation]
+- [_Java SDK_ 8](../index.md)
 
-## Linux
+## Package installation
 
-### Arch
+```shell
+# Run as root
+apt-get install ant
+```
+
+- `ANT_HOME`: `/usr/share/ant/`
+
+### Arch Linux
 
 ```shell
 # Run as root
 pacman -S apache-ant
 ```
 
-Set the environment variable `ANT_HOME` to **/usr/share/apache-ant**.
+- `ANT_HOME`: `/usr/share/apache-ant/`
 
-In `/etc/environment` append the line:
+## Environment configuration
+
+Set the environment variable `ANT_HOME` in `/etc/environment` according to your
+system.
+
+For example, for Arch Linux, append the following line:
 
 ```shell
-ANT_HOME="/usr/share/apache-ant"
+ANT_HOME="/usr/share/apache-ant/"
 ```
 
-## Check
+## Check the installation
 
 ```shell
 # Run as a user
 ant -version
 ```
 
+_Example_:
 
-[java-installation]: ../installation.md
+```terminal
+$ ant -version
+Apache Ant(TM) version 1.9.7 compiled on May 16 2016
+```

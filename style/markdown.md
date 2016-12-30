@@ -18,6 +18,23 @@ This is a _code snippet_ in **markdown**.
 ```
 ````
 
+### Shell
+
+When writing shell code, always add a comment describing the required privileges
+
+- Requires root priviliges
+
+  ```shell
+  # Run as root
+  apt-get update
+  ```
+- Does not require root priviliges
+
+  ```shell
+  # Run as a normal user
+  ls ~
+  ```
+
 ## Lists
 
 - Use dashes for bullet

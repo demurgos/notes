@@ -8,15 +8,23 @@
 
 ## Installation
 
-### Dependencies
+### Debian
 
-- `flashplayerdebugger`
-- `flex`
+```shell
+# Run as root
+apt-get install haxe
+haxelib run setup
+```
+
+- SDK HOME: `/usr/bin`
+- Executable path: `/usr/bin/haxe`
 
 ### Arch Linux
 
 ```shell
+# Run as root
 pacman -S haxe
+haxelib run setup
 ```
 
 - SDK HOME: `/usr/bin`
@@ -56,6 +64,6 @@ To use assets, _nme_ (Native Media Engine) was the first solution but it looks l
 _openFl_ is a better fork.
 
 
-[haxe-home]: http://haxe.org/
-[haxe-download]: http://haxe.org/download/
+[haxe-home]: http://haxe.org/index.md
+[haxe-download]: http://haxe.org/download/index.md
 [intellij-haxe-releases]: https://github.com/TiVo/intellij-haxe/releases
