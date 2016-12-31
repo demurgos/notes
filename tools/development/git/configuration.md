@@ -1,9 +1,35 @@
-# Configuration
+# Git Configuration
+
+## Line endings
+
+**Make sure to configure the line endings to avoid issues when working with multiple systems.**
+
+Run the following line (Windows, Linux, Mac) to normalize all the line endings to `LF` when
+checking out a commit.
+
+```shell
+# Run as a normal user
+git config --global core.autocrlf input
+```
+
+### Check the configuration
+
+```shell
+# Run as a normal user
+git config --get --global core.autocrlf
+```
+
+Example:
+
+```terminal
+$ git config --get --global core.autocrlf
+input
+```
 
 ## User information
 
 ```shell
-# As a normal user:
+# Run as a normal user
 git config --global user.name "Your Name"
 git config --global user.email "youremail@example.com"
 ```
@@ -11,11 +37,24 @@ git config --global user.email "youremail@example.com"
 Example:
 
 ```shell
-# As a normal user:
-git config --global user.name "Charles Samborski"
-git config --global user.email "demurgos@demurgos.net"
+# Run as a normal user
+$ git config --global user.name "Charles Samborski"
+$ git config --global user.email "demurgos@demurgos.net"
 ```
 
-## Line endings
+### Check the configuration
 
-**TODO** `core.crlf` to `input` if I remember
+```shell
+# Run as a normal user
+git config --get --global user.name
+git config --get --global user.email
+```
+
+Example:
+
+```terminal
+$ git config --get --global user.name
+Charles Samborski
+$ git config --get --global user.email
+demurgos@demurgos.net
+```
