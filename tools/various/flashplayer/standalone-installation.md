@@ -22,8 +22,8 @@ Adobe started to publish new versions for Linux:
 4. Add commands
    ```shell
    # Run as root
-   ln -s /opt/flashplayer/flashplayerdebugger /usr/bin/local/flashplayer
-   ln -s /opt/flashplayer/flashplayerdebugger /usr/bin/local/flashplayerdebugger
+   ln -s /opt/flashplayer/flashplayerdebugger /usr/local/bin/flashplayer
+   ln -s /opt/flashplayer/flashplayerdebugger /usr/local/bin/flashplayerdebugger
    ```
 
 ## Environment configuration
