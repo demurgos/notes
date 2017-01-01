@@ -26,3 +26,16 @@
 - `parse`, `stringify`, `generate`, `serialize`, `deserialize`
 - `type`, `kind`
 - `tag`, `category`
+
+## List of words
+
+The names are provided in camelCase.
+
+- **canceled**
+  - Not _cancelled_
+- **indexes**
+  - Not _indices_
+- **pi**
+  - In PascalCase, use **Pi**, not _PI_ (this is not an acronym)
+- **writable**
+  - Not _writeable_

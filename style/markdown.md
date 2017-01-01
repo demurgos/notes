@@ -48,6 +48,8 @@ When writing shell code, always add a comment describing the required privileges
 
 ## Tables
 
+**Source**
+
 ```markdown
 | Header A         | Header B         |
 | ---------------- | ---------------- |
@@ -62,4 +64,20 @@ When writing shell code, always add a comment describing the required privileges
 | Data 1           | Data 2           |
 | Data 3           | Data 4           |
 
-**TODO**: Check how to set the alignment
+Use the colon `:` to set the alignment:
+
+**Source**
+
+```markdown
+| Left             | Center           | Right            |
+|:---------------- |:----------------:| ----------------:|
+| Data 1           | Data 2           | Data 3           |
+| Data 4           | Data 5           | Data 6           |
+```
+
+**Output**:
+
+| Left             | Center           | Right            |
+|:---------------- |:----------------:| ----------------:|
+| Data 1           | Data 2           | Data 3           |
+| Data 4           | Data 5           | Data 6           |
