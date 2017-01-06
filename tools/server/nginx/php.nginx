@@ -1,0 +1,51 @@
+# This configuration runs a PHP server
+
+# Make sure to import the PHP backend in the http block of **nginx.conf**
+# # Import PHP backend
+# include config/upstream-php.nginx;
+
+# HTTPS
+server {
+  # HTTPS port
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  # Space-separated hostnames (wildcard * is accepted)
+  server_name php.demurgos.localhost;
+
+  # Certificates
+  ssl_certificate /etc/nginx/dev-certificate/cert.pem;
+  ssl_certificate_key /etc/nginx/dev-certificate/key.pem;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+
+  access_log /var/www/demurgos.net/php.access.log;
+  error_log /var/www/demurgos.net/php.errors.log;
+
+  # Root directory of the website
+  root /var/www/demurgos.net/php;
+
+  # Index files
+  index index.php;
+
+  location ~ \.php$ {
+    fastcgi_index index.php;
+    # This includes /etc/nginx/fastcgi.conf
+    include fastcgi.conf;
+    fastcgi_intercept_errors on;
+    # Use imported php backed;
+    fastcgi_pass php;
+  }
+}
+
+# HTTP
+server {
+  # HTTP port
+  listen 80;
+  listen [::]:80;
+  server_name php.demurgos.localhost;
+  # Enforce HTTPS for 30 days: 2592000 = 3600 * 24 * 30
+  add_header Strict-Transport-Security "max-age=2592000; includeSubDomains" always;
+  return 307 https://$host$request_uri;
+}
+

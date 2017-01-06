@@ -1,4 +1,11 @@
-# This configuration serves static files from a directory
+# https://codex.wordpress.org/Nginx
+
+# WordPress single site rules.
+# Designed to be included in any server {} block.
+
+# Import PHP backend
+include config/upstream-php.nginx;
+
 
 # HTTPS
 server {
@@ -21,8 +28,35 @@ server {
   # Root directory of the website
   root /var/www/demurgos.net/main;
 
-  # Use index.html files for directories
-  index index.html;
+  # Use index.php files for directories
+  index index.php;
+
+  location = /favicon.ico {
+    log_not_found off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+  }
+
+  location / {
+    # This is cool because no php is touched for static content.
+    # include the "?$args" part so non-default permalinks doesn't break when using query string
+    try_files $uri $uri/ /index.php?$args;
+  }
+
+  location ~ \.php$ {
+    #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+    include fastcgi.conf;
+    fastcgi_intercept_errors on;
+    fastcgi_pass php;
+  }
+
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    expires max;
+    log_not_found off;
+  }
 }
 
 # HTTP

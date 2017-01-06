@@ -2,14 +2,7 @@
 
 Nginx configuration for multiple domains
 
-## Installation
-
-### Debian
-
-```shell
-# Run as root:
-apt-get install nginx
-```
+## [Installation](./installation.md)
 
 ## Add domains
 

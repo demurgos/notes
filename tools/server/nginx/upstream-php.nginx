@@ -1,0 +1,5 @@
+# Upstream to abstract backend connection for PHP.
+upstream php {
+  # `systemctl start php-fpm` on Arch-Linux:
+  server unix:/var/run/php-fpm/php-fpm.sock;
+}

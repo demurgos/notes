@@ -1,0 +1,42 @@
+[ req ]
+default_bits            = 2048
+default_keyfile         = key.pem
+distinguished_name      = req_distinguished_name
+prompt                  = no
+string_mask             = utf8only
+# The extentions to add to the self-signed certificates
+x509_extensions	        = v3_ca
+# The extensions to add to a certificate request
+req_extensions          = v3_req
+
+[ req_distinguished_name ]
+# I use the location of OVH's datacenter
+# Country
+C                       = FR
+# State
+ST                      = Nord
+# Location
+L                       = Roubaix
+# Organization (I just use my pseudonym)
+O                       = Demurgos
+# Organizational Unit
+OU                      = Demurgos
+# Canonical Name
+CN                      = demurgos.localhost
+emailAddress            = contact@demurgos.net
+
+[ v3_ca ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always,issuer
+basicConstraints        = CA:true
+
+[ v3_req ]
+basicConstraints        = CA:FALSE
+keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName          = @alt_names
+
+[ alt_names ]
+DNS.2                   = demurgos.localhost
+DNS.3                   = sub0.demurgos.localhost
+DNS.4                   = sub1.demurgos.localhost
+IP.1                    = ::1
