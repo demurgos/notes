@@ -6,11 +6,35 @@ https://msdn.microsoft.com/en-us/library/141e06ef%28v=vs.71%29.aspx
 
 ## Styles
 
-- camelCase, lowerCamelCase
-- PascalCase, UpperCamelCase
-- kebab-case, spinal-case
-- snake_case, lower_snake_case
-- SCREAMING_SNAKE_CASE, UPPER_SNAKE_CASE
+### PascalCase
+
+Synonyms: **PascalCase**, UpperCamelCase
+
+The first letter of each word is capitalized.
+
+### camelCase
+
+Synonyms: **camelCase**, lowerCamelCase
+
+Except for the first word, the first letter of each word is capitalized.
+
+### kebab-case
+
+Synonyms: **kebab-case**, spinal-case
+
+Lowercase, words are separated with dashes `-`.
+
+### snake_case
+
+Synonyms: **snake_case**, lower_snake_case
+
+Lowercase, words are separated with underscores `_`.
+
+### SCREAMING_SNAKE_CASE
+
+Synonymes: **SCREAMING_SNAKE_CASE**, UPPER_SNAKE_CASE
+
+Uppercase, words are separated with underscores.
 
 ## Abbreviations
 
@@ -51,6 +75,16 @@ Others: _int_ (integer), _char_ (character), _str_ (string)
 > An **acronym** is a word or name formed as an abbreviation from the initial components in a
 > phrase or a word, usually individual letters (as in NATO or laser) and sometimes syllables (as
 > in Benelux).
+
+Treat all acronyms as a single word.
+
+Microsoft distinguishes between short and long acronyms. Long acronyms are
+treated as a normal word, short acronyms are treated as a single collation
+group: all the letters have the same capitalization as the first letter.
+
+This special rule for short (2 chacters or less) acronyms can lead to
+ambiguities. For example, when writing the compound from `us`, `db` and `io`.
+(Input / Output of the DataBase of the United States).
 
 We distinguish short and long acronyms:
 
