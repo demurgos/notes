@@ -2,18 +2,40 @@
 
 ## Configuration
 
-Edit **/etc/mysql/my.cnf**
+Edit your global MySQL config file:
+- Debian: **/etc/mysql/mariadb.conf.d/50-server.cnf**
+- Arch Linux: **/etc/mysql/my.cnf**
 
-Add the following lines under `[mysqld]`:
+Ensure that the following lines are set for `[mysqld]`:
 
 ```text
 # [mysqld]
 # ...
-init_connect                = 'SET collation_connection = utf8_general_ci,NAMES utf8'
-collation_server            = utf8_general_ci
-character_set_client        = utf8
-character_set_server        = utf8
+# Encoding
+init_connect = 'SET collation_connection = utf8mb4_general_ci, NAMES utf8mb4'
+collation_server = utf8mb4_general_ci
+character_set_client = utf8mb4
+character_set_server = utf8mb4
 ```
+
+- Debian: **/etc/mysql/mariadb.conf.d/50-client.cnf**
+- Arch Linux: **/etc/mysql/my.cnf**
+
+```text
+[client]
+# ...
+# Encoding
+default-character-set = utf8mb4
+
+```
+
+- `utf8`: 1 to 3 bytes
+- `utf8mb4`: 1 to 4 bytes
+
+You need `utf8mb4` to display characters outside of the Basic Multilingual Plane (BMP), otherwise
+it does not handle them at all.
+
+https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql
 
 ## Connection
 
@@ -27,7 +49,7 @@ mysql --user=username -p [db_name]
 
 Example for _root_, on no database:
 ```terminal
-mysql --user=root
+mysql --user=root -p
 ```
 
 ## Users

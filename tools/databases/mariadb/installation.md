@@ -2,6 +2,20 @@
 
 ## Debian
 
+```shell
+# Run as root
+apt-get install mariadb-server
+```
+
+Initialize the MariaDB directory
+
+```shell
+# Run as root
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+mysql_secure_installation
+systemctl enable mysql
+```
+
 ## Arch Linux
 
 ```shell
