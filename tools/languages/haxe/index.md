@@ -16,7 +16,7 @@ apt-get install haxe
 haxelib run setup
 ```
 
-- SDK HOME: `/usr/bin`
+- SDK HOME: `/usr/share/haxe`
 - Executable path: `/usr/bin/haxe`
 
 ### Arch Linux
