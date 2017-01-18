@@ -58,3 +58,13 @@ Charles Samborski
 $ git config --get --global user.email
 demurgos@demurgos.net
 ```
+
+## Rebase instead of merge when pulling changes
+
+This allows to have a cleaner git history.
+
+```shell
+# Run as a normal user
+git config --global branch.autosetuprebase always
+git config --global pull.rebase true
+```
