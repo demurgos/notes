@@ -1,4 +1,4 @@
-# Blog (hexo.io)
+# Hexo
 
 Blog framework, requires Node.
 
