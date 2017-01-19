@@ -81,3 +81,14 @@ Use the colon `:` to set the alignment:
 |:---------------- |:----------------:| ----------------:|
 | Data 1           | Data 2           | Data 3           |
 | Data 4           | Data 5           | Data 6           |
+
+
+Escape the pipe character `|` in a table cell: `&#124;`. Escape a code span with the pipe character
+`|` in a table cell: `<code>&#124;</code>`.
+
+
+Example:
+
+| Simple        | Code                |
+|---------------|---------------------|
+| &#124;        | <code>&#124;</code> |

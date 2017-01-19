@@ -11,7 +11,7 @@ The goal of the bold path and prompt on a new line is to better see the distinct
 Include the following lines in your `.bashrc` file:
 
 ```bash
-# Better prompt for normal user
+# Better prompt for a normal user
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
     PS1='\e[32m\u@\h\e[0m \e[1m\w\e[0m\n\$ '
@@ -26,7 +26,7 @@ username and host in green, it displays it in red so I can easily see that I am 
 user account.
 
 ```bash
-# Better prompt for root user
+# Better prompt for root
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
     PS1='\e[31m\u@\h\e[0m \e[1m\w\e[0m\n\$ '

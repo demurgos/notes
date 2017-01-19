@@ -14,6 +14,11 @@ sudo adduser demurgos
 
 **Note**: Remember to whitelist the new user in SSH config.
 
+Arch:
+```shell
+useradd --create-home -G users -s /bin/bash <username>
+```
+
 ### Virtual users
 
 Create "virtual" users to run some tasks with restricted rights. For example, for web services.
