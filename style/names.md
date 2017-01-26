@@ -18,7 +18,7 @@
 - `options`, `settings`
 - `arguments`, `parameters`
 - `function`, `procedure`
-- `list`, `vector`, `array`
+- `list`, `vector`, `array`, `sequence`
 - `map`, `dictionary`, `associative array`
 - `member`, `method`, `property`
 - `id`, `Id`, `ID`, `uid`, `uuid`
@@ -33,9 +33,11 @@ The names are provided in camelCase.
 
 - **canceled**
   - Not _cancelled_
-- **indexes**
-  - Not _indices_
+- **indices**
+  - Not _indexes_
+  - _indices_ is used by Jetbrains
+  - _indexes_ is used by Microsoft
 - **pi**
-  - In PascalCase, use **Pi**, not _PI_ (this is not an acronym)
+  - In PascalCase, use **Pi**, not _PI_ (this is a normal word)
 - **writable**
   - Not _writeable_

@@ -8,13 +8,13 @@ not on the official repository.
 Go to the main page of the package and get the _Git clone URL_.
 
 ```
+# Run as a normal user
 # Get the package
 git clone <url>
 cd <package-name>
-
 # Check the config
 less PKGBUILD
-# Install
+# Install (run as a normal user, I don't know where it will install it)
 makepkg --syncdeps --install
 ```
 
