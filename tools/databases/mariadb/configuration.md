@@ -33,7 +33,7 @@ default-character-set = utf8mb4
 - `utf8mb4`: 1 to 4 bytes
 
 You need `utf8mb4` to display characters outside of the Basic Multilingual Plane (BMP), otherwise
-it does not handle them at all.
+it does not handle them at all. Note that some standard chinese characters are outside of the BMP.
 
 https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql
 
@@ -45,7 +45,7 @@ mysql --user=username -p [db_name]
 ```
 
 - `-p`: Prompt the password
-- `--password="mypassword"` otherwise (will be logged in history)
+- `--password="mypassword"` otherwise (**DANGER**: this will be logged in the bash history)
 
 Example for _root_, on no database:
 ```terminal

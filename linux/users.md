@@ -32,7 +32,7 @@ Create "virtual" users to run some tasks with restricted rights. For example, fo
 # --home-dir
 #   The user's login directory.
 # -M
-#   Do no create the user's home directory.
+#   Do no create the user's home directory. (TODO: check, maybe it's just "do not populate home with default files")
 useradd demurgos.net --gid web --home-dir /var/www/demurgos.net -M
 ```
 

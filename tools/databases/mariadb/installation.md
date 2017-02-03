@@ -7,14 +7,24 @@
 apt-get install mariadb-server
 ```
 
+(This will create the user `mysql`)
+
 Initialize the MariaDB directory
 
 ```shell
 # Run as root
-mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+# --basedir
+#   Directory containing bin/my_print_defaults
+mysql_install_db --user=mysql --basedir=/usr/ --datadir=/var/lib/mysql/
 mysql_secure_installation
-systemctl enable mysql
+systemctl enable mariadb
 ```
+
+You may need to remove (it means rename until it works) the old `/var/lib/mysql/`.
+
+
+Set the root password, remove the anonymous user, disallow remote root, remove test DB,
+reload privileges table,
 
 ## Arch Linux
 

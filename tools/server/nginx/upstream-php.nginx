@@ -1,5 +1,9 @@
 # Upstream to abstract backend connection for PHP.
+# Make sure to include it in the http block of the top nginx.conf
 upstream php {
   # `systemctl start php-fpm` on Arch-Linux:
+  # Path:
+  # - Debian: /var/run/php/php7.0-fpm.sock
+  # - Arch Linux: /var/run/php-fpm/php-fpm.sock
   server unix:/var/run/php-fpm/php-fpm.sock;
 }

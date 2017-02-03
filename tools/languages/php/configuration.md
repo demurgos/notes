@@ -2,6 +2,10 @@
 
 ## MariaDB & PostreSQL
 
+- **php.ini** path:
+  - Debian: **/etc/php/7.0/fpm/php.ini**
+  - Arch Linux: **/etc/php/php.ini**
+
 In **/etc/php/php.ini**, make sure that the following lines are uncommented:
 
 ```php.ini

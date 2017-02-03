@@ -6,7 +6,12 @@
 
 ## Debian
 
-**TODO**
+```shell
+# Run as root
+apt-get install php-fpm php-xml php-zip
+# Minimal installation:
+# apt-get install php-fpm
+```
 
 ## Arch Linux
 
