@@ -88,6 +88,20 @@ Make sure to have the _root_ permissions:
 make install
 ```
 
+#### Check
+
+```shell
+# Run as a normal user
+haxe -version
+```
+
+Example:
+
+```terminal
+$ haxe -version
+3.1.3
+```
+
 ### Standard library path
 
 You now need to set the `HAXE_STD_PATH` environment variable to the absolute path of the Haxe
@@ -102,6 +116,23 @@ Since this variable is required for every user wanting to use Haxe, I recommend 
 Example:
 - Default installation: Add the line `HAXE_STD_PATH="/usr/lib/haxe/std/:."`
 - macOS with SIP: Add the line `HAXE_STD_PATH="/usr/local/lib/haxe/std/:."`
+
+The changes to `/etc/environment` will be applied when you reboot. To apply them for your current
+session, use `source /etc/environment`.
+
+#### Check
+
+```shell
+# Run as a normal user
+echo $HAXE_STD_PATH
+```
+
+Example:
+
+```terminal
+$ echo $HAXE_STD_PATH
+/usr/lib/haxe/std/:.
+```
 
 ### Haxelib path
 
@@ -122,22 +153,19 @@ Example values:
 haxelib setup
 ```
 
-## Check the installation
+#### Check
+
+**IMPORTANT**: You have to run it outside of the directory containing the Haxe sources.
+The **std** directory in the project interferes with the command.
 
 ```shell
 # Run as a normal user
-echo $HAXE_STD_PATH
-haxe -version
-# You have to run the following command outside of Haxe's directory:
-haxelib version
+haxelib
 ```
 
 Example:
+
 ```terminal
-$ echo $HAXE_STD_PATH
-/usr/lib/haxe/std/:.
-$ haxe -version
-3.1.3
 $ haxelib
 Haxe Library Manager 3.1.0-rc.4 - (c)2006-2013 Haxe Foundation
   Usage: haxelib [command] [options]
@@ -170,7 +198,7 @@ Haxe Library Manager 3.1.0-rc.4 - (c)2006-2013 Haxe Foundation
 
 ## Haxelib
 
-Some packages no longer support Flash 8. Here is a small table with the versions supporting
+Some packages no longer support Flash 8. Here is a small table with the versions compatible with
 Haxe 3.1.
 
 | Name   | Version            |
