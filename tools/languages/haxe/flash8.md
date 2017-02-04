@@ -13,18 +13,20 @@ You will have to compile a specific version of Haxe yourself.
 
 ## Requirements
 
-This article was only tested with **Linux** (Arch Linux, Debian and Mint) and **Mac**. If you
-manage to compile Flash 8 files with Windows, send a PR to update this article.
+This article was tested with **Linux** (Arch Linux, Debian and Mint) and **Mac**. If you
+manage to use it with Windows, send a PR to update this article.
 
-The specified versions are verified to work.
+See below for the system-specific command to install the requirements.
 
-- [_neko_][neko-home] 2.1.0 (2016-05-08)
-- [_zlib_][zlib-home] 1.2.11 (2017-01-15)
-- ocaml
-- camlp4
-- pcre
-- _git_
-- **TODO**: gcc and others ...
+- [_Camlp4_][camlp4-home] latest, verified with 4.04.0 (2016-11-15)
+- [_git_][git-home] latest, verified with 2.11.0 (2016-11-29)
+- [_neko_][neko-home] latest, verified with 2.1.0 (2016-05-08)
+- [_OCaml_][ocaml-home] latest, verified with 4.04.0 (2016-11-04)
+- [_PCRE_][pcre-home] latest, verified with 8.39 (2016-06-14)
+- [_zlib_][zlib-home] latest, verified with 1.2.11 (2017-01-15)
+
+Specific to Mac OS X:
+- [_xquartz_][xquartz-home] latest, verified with 2.7.11 (2016-10-29)
 
 ### Requirements installation for Debian
 
@@ -40,12 +42,19 @@ apt-get install camlp4 neko ocaml
 pacman -S camlp4 neko ocaml pcre zlib
 ```
 
+
+### Requirements installation for macOS
+
+```shell
+# Run as root
+brew install camlp4 neko ocaml xquartz
+```
+
 ## Compilation
 
-To use Haxe 3.1, you will need to compile [the `3.1_bugfix` branch of Haxe from the fork by
-Demurgos][github-demurgos-haxe-3.1_bugfix]. There is [an open
-issue](https://github.com/HaxeFoundation/haxe/issues/5977) to add this branch to [the main
-Haxe repository](https://github.com/HaxeFoundation/haxe).
+To use Haxe 3.1, you will need to compile [the `3.1_bugfix` branch of Haxe from my
+fork][github-demurgos-haxe-3.1_bugfix]. There is [an open issue][issue-bugfix] to add this branch
+to [the main Haxe repository][github-haxe].
 
 ```shell
 # Run as a normal user
@@ -54,28 +63,64 @@ cd haxe-3.1
 make
 ```
 
-
 ## Installation and configuration
 
-From the project's directory, install the compiled files to your system:
+### Explanation
+
+This step will add the compiled files to your system.
+This will install Haxe to **/usr/lib/haxe/** (later refered to as **Haxe home**) and add
+`haxe` and `haxelib` to your path by creating **/usr/bin/haxe** and **/usr/bin/haxelib**`.
+
+#### Preparation for macOS
+
+**If you use macOS**, **/usr/lib** is protected by default and you cannot write to it, even as
+_root_. You have two solutions:
+- [Disable System Inregrity Protection (SIP)][so-disable-sip]
+- Write the files to **/usr/local/** (instead of **/usr/**) by editing the line 13 of **Makefile**
+  from `INSTALL_DIR=/usr` to `INSTALL_DIR=/usr/local`
+
+### Installation
+
+Make sure to have the _root_ permissions:
+
 ```shell
 # Run as root
 make install
 ```
 
-This will install Haxe to the `/usr/lib/haxe/` directory and create two links in `/usr/bin`:
-`haxe` and `haxelib`.
+### Standard library path
 
 You now need to set the `HAXE_STD_PATH` environment variable to the absolute path of the Haxe
-standard library and to the current directory `.` (dynamic). The standard library is in the `std`
-directory of the installation directory `/usr/lib/haxe/`.
+standard library and to the current directory `.`, separated by a colon `:`.
+Example value: `/usr/lib/haxe/std/:.`.
 
-Append the following line to **/etc/environment**:
-```text
-HAXE_STD_PATH="/usr/lib/haxe/std/:."
+The standard library is located in the **std** directory of your Haxe home.
+
+Since this variable is required for every user wanting to use Haxe, I recommend to set it in the
+**/etc/environment** file.
+
+Example:
+- Default installation: Add the line `HAXE_STD_PATH="/usr/lib/haxe/std/:."`
+- macOS with SIP: Add the line `HAXE_STD_PATH="/usr/local/lib/haxe/std/:."`
+
+### Haxelib path
+
+Haxelib is the package manager for Haxe. It installs packages globally in the **lib** directory
+of your Haxe home. You should ensure that the path is to this directory is correctly configured
+in Haxelib since you compiled Haxelib manually.
+
+**It is important to configure it as a normal user**, otherwise you will not be able to install
+packages as a normal user.
+
+Example values:
+- Default installation:`/usr/lib/haxe/lib/`
+- macOS with SIP:`/usr/lib/haxe/lib/`
+
+
+```shell
+# Run as a normal user
+haxelib setup
 ```
-
-**TODO**: Configure **/usr/lib/haxe/lib/**.
 
 ## Check the installation
 
@@ -131,18 +176,12 @@ Haxe 3.1.
 | Name   | Version            |
 |--------|--------------------|
 | lime   | 2.3.3 (2015-04-21) |
-| munit  | 2.1.2              |
+| munit  | 2.1.2 (2015-09-24  |
 | openfl | 3.0.1 (2015-04-09) |
-| svg    | 1.1.1              |
+| svg    | 1.1.1 (2016-10-10) |
 
-**As a normal user**, run the following command to configure _haxelib_.
-Choose `/usr/lib/haxe/lib/` for the repository path (`lib` directory in the Haxe home).
-```shell
-# Run as a normal user
-haxelib setup
-```
+When you install libraries, make sure to specify the version.
 
-Then install the libraries:
 ```shell
 # Run as a normal user
 haxelib install lime 2.3.3
@@ -160,8 +199,17 @@ haxelib install svg 1.1.1
 - Cross-scripting
 - LocalConnection
 
-[zlib-home]: http://www.zlib.net/
-[neko-home]: http://nekovm.org/
-[haxe-3.1.3]: https://haxe.org/download/version/3.1.3/
+
+[camlp4-home]: https://github.com/ocaml/camlp4
+[git-home]: https://git-scm.com/
 [github-demurgos-haxe-3.1_bugfix]: https://github.com/demurgos/haxe/tree/3.1_bugfix
+[github-haxe]: https://github.com/HaxeFoundation/haxe
 [github-haxe-3.1_bugfix]: https://github.com/HaxeFoundation/haxe/tree/3.1_bugfix
+[haxe-3.1.3]: https://haxe.org/download/version/3.1.3/
+[issue-bugfix]: https://github.com/HaxeFoundation/haxe/issues/5977
+[neko-home]: http://nekovm.org/
+[ocaml-home]: https://ocaml.org/
+[pcre-home]: http://pcre.org/
+[so-disable-sip]: https://apple.stackexchange.com/questions/208478/how-do-i-disable-system-integrity-protection-sip-aka-rootless-on-os-x-10-11
+[xquartz-home]: https://www.xquartz.org/
+[zlib-home]: http://www.zlib.net/
