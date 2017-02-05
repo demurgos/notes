@@ -1,5 +1,18 @@
 # KDE
 
+## Utilities
+
+### Filelight
+
+Displays data about the space used by directories as concentric circles.
+
+- Debian
+  
+  ```shell
+  # Run as root
+  apt-get install filelight
+  ```
+
 ## Troubleshot
 
 If the menu bar disappear or the taskbar hangs up, kill and restart it:

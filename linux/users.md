@@ -46,12 +46,12 @@ addgroup <groupname>
 ## Add user to group
 
 ```shell
-usermod -a -G <groupname> <username>
+usermod --append --groups docker <username>
 ```
 
 Example:
 ```shell
-usermod -a -G sudo demurgos
+usermod --append --groups sudo demurgos
 ```
 
 ## Remove user

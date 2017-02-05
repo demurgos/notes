@@ -24,6 +24,7 @@ See below for the system-specific command to install the requirements.
 - [_OCaml_][ocaml-home] latest, verified with 4.04.0 (2016-11-04)
 - [_PCRE_][pcre-home] latest, verified with 8.39 (2016-06-14)
 - [_zlib_][zlib-home] latest, verified with 1.2.11 (2017-01-15)
+- **TODO**: Also one of neko's dependencies is not pulled automatically
 
 Specific to Mac OS X:
 - [_xquartz_][xquartz-home] latest, verified with 2.7.11 (2016-10-29)
@@ -32,7 +33,7 @@ Specific to Mac OS X:
 
 ```shell
 # Run as root
-apt-get install camlp4 neko ocaml
+apt-get install camlp4 neko ocaml zlib1g-dev
 ```
 
 ### Requirements installation for Arch Linux

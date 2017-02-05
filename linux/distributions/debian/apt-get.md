@@ -19,3 +19,10 @@ apt-get dist-upgrade
 # Run as a normal user
 dpkg --list
 ```
+
+### Remove a package with its dependencies
+
+```shell
+# Run as root
+apt-get purge <package-name>
+```
