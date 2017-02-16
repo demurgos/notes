@@ -15,9 +15,20 @@ apt-get install curl
 
 ## Installation
 
+### Arch Linux
+
+[Official documentation for Arch Linux][docker-install-arch]
+
+```shell
+# Run as root
+pacman -S docker
+```
+
+Then follow the Debian steps from the point 5.
+
 ### Debian
 
-[Official documentation][docker-install-debian]
+[Official documentation for Debian][docker-install-debian]
 
 1. Support HTTPS repositories
 
@@ -150,5 +161,6 @@ apt-get install curl
   ```
 
 
+[docker-install-arch]: https://docs.docker.com/engine/installation/linux/archlinux/
 [docker-install-debian]: https://docs.docker.com/engine/installation/linux/debian/
 [notes-users-add-to-group]: ../../linux/users.md#add-user-to-group

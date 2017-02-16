@@ -16,7 +16,16 @@ docker ps -a
 ## Remove a local image
 
 ```shell
+# Run as a normal user
 docker rmi -f <image-id-or-name>
+```
+
+## Remove all containers and images
+
+```shell
+# Run as a normal user
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
 ```
 
 ## Build an image
