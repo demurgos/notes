@@ -3,6 +3,10 @@
 [ArchLinux User Repository (AUR)][aur-home] contains packages for Arch that are
 not on the official repository.
 
+## Requirements
+
+base-devel
+
 ## Install a package
 
 Go to the main page of the package and get the _Git clone URL_.

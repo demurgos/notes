@@ -36,6 +36,7 @@ loadkeys <basename>
 Example:
 ```terminal
 $ loadkeys fr
+$ loadkeys us
 ```
 
 ## Basic configuration of the system clock
@@ -147,18 +148,27 @@ mkpart <partition-type> <fs-type> <start-offset> <end-offset>
 
 #### UEFI Boot partition
 
-We leave one free MiB at the start for the disk data.
+We leave two free MiB at the start for the disk data.
 
 ```parted-shell
-mkpart ESP fat32 1MiB 513MiB
+mkpart ESP fat32 2MiB 514MiB
+name <partition> efi
 set <partition> boot on
 ```
+(boot will automatically add the `esp` flag)
+
 - partition: the number of the partition (example: `1`, `2`), see `print`.
 
 #### Linux swap
 
+For 1GiB:
 ```shell
-mkpart primary linux-swap 513MiB 1537MiB
+mkpart primary linux-swap 514MiB 1538MiB
+```
+
+For 4GiB:
+```shell
+mkpart primary linux-swap 514MiB 4610MiB
 ```
 
 (There are two types of linux-swap: v0 and v1, this is why `print` displays the version)
@@ -166,7 +176,7 @@ mkpart primary linux-swap 513MiB 1537MiB
 #### Root partition
 
 ```shell
-mkpart primary ext4 1537MiB 100%
+mkpart primary ext4 1538MiB 100%
 ```
 
 VirtualBox:
@@ -196,6 +206,9 @@ Number  Start   End     Size    File system     Name     Flags
 Information: You may need to update /etc/fstab.
 
 ```
+
+(I changed the buffer size at the start from 1MiB to 2MiB so the printed values
+might not match)
 
 ### Verification of the partitions
 
@@ -267,7 +280,7 @@ to be created manually before):
 # Run as root
 # /mnt/ already exists (empty directory)
 mount <root-partition> /mnt/
-mkdir /mont/boot/
+mkdir /mnt/boot/
 mount <boot-partition> /mnt/boot/
 ```
 
@@ -297,6 +310,9 @@ You can pre-generate an /etc/fstab file for the new system with:
 # Run as root
 genfstab -U /mnt/ >> /mnt/etc/fstab
 ```
+(`-U` means to use unique ids, the first time I used the default partition names with a dual boot with Windows,
+a Windows update created a new partition and wrecked my boot sequence because the names (sda1, sda2, etc.) are relative...)
+
 Then, check `/mnt/etc/fstab` manually.
 
 Example:
@@ -318,6 +334,11 @@ UUID=5b2e43dd-2af7-420b-876a-3aa698b1c326       /               ext4           r
 # /dev/sda1
 UUID=D8E5-C628          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro   0 2
 ```
+
+If you get something else beyond the main partition and boot partition, edit out the lines with nano. (I got sdb1 when
+installing arch on my laptop: I made a backup using /mnt before the installation)
+Make sure that the root is in the first pass (`1`).
+
 
 [Change root](https://wiki.archlinux.org/index.php/Change_root) into the new system:
 
@@ -434,8 +455,6 @@ passwd
 
 ### Install a bootloader
 
-If you are using Virtualbox, you also need:
-
 ```terminal
 # grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=grub
 Installing for x86_64-efi platform
@@ -482,6 +501,10 @@ If you have warnings about missing modules (as above), use:
 ```shell
 modinfo <module-name>
 ```
+
+Actually, according to the Arch Wiki you can ignore these 2 specific warnings:
+> These appear to any Arch Linux users, especially those who have not installed these firmware modules. If you do not
+> use hardware which uses these firmwares you can safely ignore this message. 
 
 #### Intel-CPU-specific step
 
@@ -547,3 +570,158 @@ dhcpcd enp0s3
 # systemctl enable dhcpcd
 ```
 
+### netctl
+
+### Persist the time configuration
+
+Rerun the time configuration as above:
+
+```shell
+# Run as root
+timedatectl set-ntp true
+```
+
+### Create users
+
+```shell
+useradd --create-home -G users -s /bin/bash <username>
+```
+
+### Upgrade the system
+
+```shell
+pacman -Syu
+```
+
+### KDE
+
+Install the NVidia drivers and KDE
+
+```shell
+pacman -S xorg bumblebee mesa nvidia plasma-meta
+sddm
+```
+
+Choose `mesa-libgl` and `libx264` when prompted.
+(The first time, I choose `nvidia-libgl` when installing just `plasma-meta` and got a black screen).
+
+If sddm starts, add:
+```shell
+systemctl enable sddm
+```
+
+### sudo
+
+```shell
+pacman -S sudo
+```
+
+And then add the main user to the sudoers.
+
+```shell
+groupadd sudo
+usermod --append --groups sudo demurgos
+```
+
+Then edit `/etc/sudoers`, search for the following:
+
+```text
+## Uncomment to allow members of group sudo to execute any command
+%sudo   ALL=(ALL) ALL
+```
+
+### System tools
+
+```shell
+pacman -S konsole plasma-nm dolphin firefox spectacle
+```
+
+#### Konsole
+
+#### plasma-nm
+
+Network manager
+
+**Does not work ?**
+
+```shell
+pacman -S networkmanager
+systemctl enable NetworkManager
+```
+
+**Case-sensitive**
+
+#### Dolphin
+
+#### Ark
+
+```shell
+pacman -S ark
+```
+
+#### Firefox
+
+#### VLC
+
+```shell
+pacman -S vlc
+```
+
+### fonts
+
+It's not that clear which packages to install...
+
+```shell
+pacman -S ttf-dejavu
+```
+
+### System configuration
+
+**Input Devices | Mouse | General | Icons**
+
+Choose `Double-click to open files and folders (select icons on first click)`.
+
+**Workspace | Look And Feel**
+
+Choose `Breeze Dark`.
+
+**Application Style | Window Decorations | Theme**
+
+Choose `Plastik`.
+
+### Dev tools
+
+#### Git
+
+```shell
+pacman -S git
+```
+
+Then check the git configuration
+
+#### Jetbrains toolbox
+
+##### Requirements
+
+- fuse
+
+```shell
+pacman -S fuse2
+```
+
+##### Installation
+
+Download, extract, then:
+
+```shell
+mkdir -p /opt/jetbrains-toolbox
+chown -R demurgos /opt-jetbrains-toolbox
+```
+
+### Others
+
+```shell
+pacman -S openssh cmake valgrind wget clang kate ,,,, unzip ninja
+```
+
+AUR: lcov
