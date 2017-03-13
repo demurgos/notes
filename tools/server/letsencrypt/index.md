@@ -28,11 +28,20 @@ certbot certonly --standalone -d $DOMAINS
 ```
 
 If _nginx_ is running, use:
+
 ```shell
 certbot certonly --standalone --pre-hook "service nginx stop" --post-hook "service nginx start" -d $DOMAINS
 ```
 
 You will have to enter an email and validate the terms of service.
+
+**Make sure that the hooks are correctly defined in /etc/cron.d/certbot.**
+
+## Renew the certificates
+
+```shell
+certbot --pre-hook "service nginx stop" --post-hook "service nginx start" renew
+```
 
 ## Certificates location
 
