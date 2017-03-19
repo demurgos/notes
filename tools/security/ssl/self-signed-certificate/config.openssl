@@ -22,7 +22,7 @@ O                       = Demurgos
 # Organizational Unit
 OU                      = Demurgos
 # Canonical Name
-CN                      = demurgos.localhost
+CN                      = localhost
 emailAddress            = contact@demurgos.net
 
 [ v3_ca ]
@@ -36,7 +36,6 @@ keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
 
 [ alt_names ]
-DNS.2                   = demurgos.localhost
-DNS.3                   = sub0.demurgos.localhost
-DNS.4                   = sub1.demurgos.localhost
+DNS.2                   = localhost
+DNS.3                   = demurgos.localhost
 IP.1                    = ::1

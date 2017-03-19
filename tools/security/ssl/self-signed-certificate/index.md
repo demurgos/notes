@@ -8,7 +8,7 @@ to issue certificates.
 
 ## Configuration
 
-I'd recommend to place the self signed certificate at **/etc/nginx/dev-certificate**.
+I'd recommend to place the self signed certificate at **/etc/nginx/dev-certificate/**.
 
 Copy **config.openssl** (from this direcotory) to the directory that will contain your certificate.
 
