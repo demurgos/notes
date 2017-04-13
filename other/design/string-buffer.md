@@ -3,14 +3,18 @@
 - A buffer is a finite sequence of unsigned 8-bit integers (bytes).
 - A string is a finite sequence of characters.
 - A byte is an integer in the range 0..255
-- A character is the abstract type representing letter, or glyph, or part of glyph.
-- For practical reasons, computers manipulate characters trough their code number.
+- A character is the abstract type representing letter, or glyph, or part of glyph:
+  its just unclear... So we prefer to avoid talking about characters usually.
+- For practical reasons, computers manipulate "characters" trough their code number.
   The association between a code and a letter is called a character set (or
   alphabet). Some examples of character sets are: Unicode, US ASCII, Latin-1.
 - For practical reasons, a sequence of character codes has to be stored as
   a sequence of bytes. The association between a sequence of character codes
   and a sequence of bytes is called an encoding. Some examples of encodings are
-  UTF-8, UTF-32, US ASCII.
+  UTF-8, UTF-32, US ASCII. An important family of encodings is _UTF_. It is
+  based on _code-units_. A code unit is the base element for the encoding.
+  For example UTF-8 uses 8-bit code units (1 byte) while UTF-16 uses 16-bit,
+  code units (2 bytes).
 
 A long time ago, programmers did not distinguish between bytes and
 characters. It caused and still causes a lot of pain. Be smart, don't
@@ -59,17 +63,18 @@ strings was one of the main reasons of the switch from Python 2 to Python 3.
 
 ### Complete distinction
 
-- Java
-- Javascript
-- Haxe
 - Python 3
 - Rust
-- Typescript
 
 ### Partial distinction
 
 - OCaml
 - Python 2
+- Java
+- Javascript
+- Typescript
+
+Java, Javascript and Typescript confuse codepoints with 16-bit code units.
 
 ### No distinction
 
@@ -82,3 +87,4 @@ strings was one of the main reasons of the switch from Python 2 to Python 3.
 - PHP
 - Ruby
 - Prolog
+- Haxe
