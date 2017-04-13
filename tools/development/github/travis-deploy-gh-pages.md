@@ -1,0 +1,50 @@
+# Deploy to gh-pages from Travis
+
+## Requirements
+
+- Travis CI Command Line Client
+
+  ```sh
+  # Run as root
+  pacman -S ruby
+  # Run as a normal user (local installation)
+  gem install travis
+  ```
+  
+  If the command is not found, run:
+  ```sh
+  gem environment
+  ```
+  And add the `bin` directory in `USER INSTALLATION DIRECTORY`.
+  
+  Example:
+  ```sh
+  export PATH="$HOME/.gem/ruby/2.4.0/bin:$PATH"
+  ```
+
+## Log in to Travis
+
+```sh
+travis login
+```
+
+## Generate SSH keys
+
+```
+EMAIL="demurgos@demurgos.net"
+OUTPUT_KEYFILE="deploy_key"
+ssh-keygen -t rsa -C "$EMAIL" -N "" -f "$OUTPUT_KEYFILE"
+```
+
+- `-N`: Password
+- `-f`: Output keyfile.
+  - The private key will be `OUTPUT_KEYFILE`
+  - The public key will be `OUTPUT_KEYFILE + ".pub"`
+
+Then:
+```
+travis encrypt-file "$OUTPUT_KEYFILE"
+rm $OUTPUT_KEYFILE
+```
+
+And upload the public key
