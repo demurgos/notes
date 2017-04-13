@@ -6,7 +6,7 @@ Document oriented DB. [MongoDB is Web Scale][mongodb-web-scale].
 
 ## Installation
 
-[Download link](https://www.mongodb.org/index.md)
+See [installation.md](./installation.md)
 
 
 [mongodb-web-scale]: https://www.youtube.com/watch?v=b2F-DItXtZs

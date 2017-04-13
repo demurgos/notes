@@ -1,6 +1,6 @@
-# Mongodb
+# Mongodb installation
 
-## Install
+## Installation
 
 ### Debian
 

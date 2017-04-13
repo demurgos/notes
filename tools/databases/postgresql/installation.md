@@ -67,11 +67,13 @@ Then run as root
 pg_ctl -D /path/to/postgres/data/ -l logfile start
 ```
 
-TODO: find how to use a service like:
+Start the server:
+
 ```shell
-systemctl start postgres
+systemctl start postgresql
 ```
 
+TODO: configure the systemd version ?
 
 Default port: `5432` (and `58689` ?).
 
