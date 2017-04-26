@@ -4,7 +4,7 @@
 
 ```shell
 # Run as root
-pacman -S samba lib32-mpg123
+pacman -S samba lib32-mpg123 lib32-libldap
 ```
 
 Note: requires enabled multilib
