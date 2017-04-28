@@ -1,0 +1,35 @@
+# This configuration sets a reverse proxy for a local Verdaccio server
+
+# Define target of the reverse-proxy
+upstream npm_localhost {
+    server 127.0.0.1:4873;
+    keepalive 8;
+}
+
+# HTTP
+server {
+  # HTTP port
+  listen 80;
+  listen [::]:80;
+
+  # Space-separated hostnames (wildcard * is accepted)
+  server_name npm.localhost;
+
+  access_log /data/projects/verdaccio.access.log;
+  error_log /data/projects/verdaccio.errors.log;
+
+  location / {
+     # Upstream reference
+     proxy_pass http://npm_localhost;
+
+     # Configuration of the proxy
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     proxy_set_header Upgrade $http_upgrade;
+     proxy_set_header Connection 'upgrade';
+     proxy_set_header Host $host;
+     proxy_set_header X-NginX-Proxy true;
+     proxy_cache_bypass $http_upgrade;
+     proxy_redirect off;
+  }
+}

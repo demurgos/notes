@@ -28,5 +28,27 @@ You will get:
 - **privatekey.pem**: Keep it private!
 - **csr.pem**: A temporary file describing the request of the certificate creation (you can delete it).
 
+## Add it to the trusted certificates
+
+
+```sh
+# Run as root
+mkdir --parents /usr/share/ca-certificates/local
+cp certificate.pem /usr/share/ca-certificates/local/dev.crt
+```
+
+The `crt` extension inside `/usr/share/ca-certificates` is required.
+
+```sh
+# Run as root
+nano /etc/ca-certificates.conf
+```
+
+Add `local/dev.crt` at the top.
+
+```sh
+# Run as root
+update-ca-certificates
+```
 
 [notes-letsencrypt]: ../../../server/letsencrypt/index.md

@@ -2,12 +2,21 @@
 
 ## Debian
 
+```sh
+# Run as root
+apt-get install postgresql postgresql-client postgresql-doc
+su - postgres
+```
+
+Then ?...
+
+
 ## Arch Linux
 
 ```shell
 # Run as root
 pacman -S postgresql
-su - postrgres
+su - postgres
 ```
 
 Then run the commands as the `postgres` user.

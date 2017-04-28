@@ -22,7 +22,7 @@ Shall the new role be a superuser? (y/n) y
 
 ```shell
 # Run as `postgres`
-createdb --username=dbuser dbname
+createdb --owner=dbuser dbname
 ```
 
 ## Remove Postgres user
