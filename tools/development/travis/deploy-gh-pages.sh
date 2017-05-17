@@ -1,6 +1,21 @@
 #!/bin/bash
 # bash is required (instead of a simple POSIX shell) for substitutions (and maybe indirect variable access)
 
+# This script deploys the gh-pages directory to the `gh-pages` branch of the repo
+# when a change is merged into `master`.
+# It requires an encrypted SSH key for the repo.
+#
+# ```bash
+# EMAIL="demurgos@demurgos.net"
+# OUTPUT_KEYFILE="deploy_key"
+# ssh-keygen -t rsa -C "$EMAIL" -N "" -f "$OUTPUT_KEYFILE"
+# travis encrypt-file "$OUTPUT_KEYFILE"
+# rm "$OUTPUT_KEYFILE"
+# ```
+# Upload the public key to the repository's setting, then remove the public key and commit the encrypted private key.
+# Make sure that the clear private key ($OUTPUT_KEYFILE) is not in the history (it should be removed after the
+# encryption).
+
 # Exit with nonzero exit code if anything fails
 set -e
 
@@ -8,7 +23,9 @@ echo "Starting deployment"
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
+# Directory to publish
 GH_PAGES_DIRECTORY="dist/gh-pages/"
+# Id in the name of the key and iv files
 TRAVIS_ENCRYPTION_ID="xxxxxxxxxxxx"
 
 # Pull requests shouldn't try to deploy
@@ -52,13 +69,13 @@ git config user.email "demurgos@demurgos.net"
 # Ensure that the files are added
 git add .
 
-# If there are no changes (empty string for `git status --porcelain`) then just bail.
+# If there are no changes (empty string for `git status --porcelain`) then just bail out.
 if [ -z "$(git status --porcelain)" ]; then
     echo "No changes to gh-pages, exiting."
     exit 0
 fi
 
-# Commit the "changes", i.e. the new version.
+# Commit the changes, i.e. the new version.
 # The delta will show diffs between new and old versions.
 git commit -m "Deploy to Github Pages: ${SHA}"
 
