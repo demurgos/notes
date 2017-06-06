@@ -38,9 +38,11 @@ apt-get install camlp4 neko ocaml zlib1g-dev
 
 ### Requirements installation for Arch Linux
 
+The Haxe compilation requires the `as` program (part of `gcc`).
+
 ```shell
 # Run as root
-pacman -S camlp4 neko ocaml pcre zlib
+pacman -S camlp4 gcc neko ocaml pcre zlib
 ```
 
 
