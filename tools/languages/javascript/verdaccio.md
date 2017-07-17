@@ -64,4 +64,16 @@ packages:
 ```
 
 
+### Large packages
+
+Use the following `nginx` directive if you want to accept large packages:
+
+```nginx
+http {
+  # ...
+  client_max_body_size 5M;
+}
+```
+
+
 [verdaccio-home]: https://github.com/verdaccio/verdaccio

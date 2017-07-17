@@ -17,13 +17,16 @@
 - `scrap`, `extract`
 - `options`, `settings`
 - `arguments`, `parameters`
+  - "parameters" are what a function expects (type), "arguments" are what it received (value).
+    For example: `(string, number, number)` are parameters, `("foo", 1, 2)` are arguments.
 - `function`, `procedure`
+  - A function is a kind of procedure that returns a value.
 - `list`, `vector`, `array`, `sequence`
 - `map`, `dictionary`, `associative array`
 - `member`, `method`, `property`
 - `id`, `Id`, `ID`, `uid`, `uuid`
 - `organization`, `project`
-- `parse`, `stringify`, `generate`, `serialize`, `deserialize`
+- `parse`, `stringify`, `generate`, `serialize`, `deserialize`, `emit`
 - `type`, `kind`
 - `tag`, `category`
 
