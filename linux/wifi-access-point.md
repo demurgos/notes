@@ -29,3 +29,10 @@ create_ap [options] <wifi-interface> [<interface-with-internet>] [<access-point-
 # Run as root ?
 create_ap wlp7s0 eno1 undefined PASSWORD123
 ```
+
+## Windows
+
+```
+NETSH WLAN set hostednetwork mode=allow ssid=<access_point_name> key=<passphrase>
+:: NETSH WLAN start hostednetwork
+```
