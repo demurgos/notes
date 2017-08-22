@@ -80,13 +80,23 @@ Here are some ideas to enhance this prompt:
 
 ## Colored `ls` output
 
-Include the following lines in your `.bashrc` file to display .
-```
+Include the following lines in your `.bashrc` file to display colored output.
+
+```shell
 export LS_OPTIONS='--color=auto'
 # `dircolors` generates a command to export the `LS_COLORS` environment variable.
 eval "`dircolors`"
 alias ls='ls $LS_OPTIONS'
 ```
+
+## ISO time for `ls`
+
+Include the following lines in your `.bashrc` file to display time in ISO format with `ls`.
+
+```shell
+export TIME_STYLE=long-iso
+```
+
 
 [unicode-1b]: http://www.fileformat.info/info/unicode/char/1b/index.htm
 [unicode-5b]: http://www.fileformat.info/info/unicode/char/5b/index.htm
