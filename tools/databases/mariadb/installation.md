@@ -24,7 +24,7 @@ You may need to remove (it means rename until it works) the old `/var/lib/mysql/
 
 
 Set the root password, remove the anonymous user, disallow remote root, remove test DB,
-reload privileges table,
+reload privileges table, etc. See [configuration](./configuration.md).
 
 ## Arch Linux
 
