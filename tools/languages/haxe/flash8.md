@@ -61,7 +61,7 @@ to [the main Haxe repository][github-haxe].
 
 ```shell
 # Run as a normal user
-git clone --recursive --branch 3.1_bugfix https://github.com/demurgos/haxe.git haxe-3.1
+git clone --recursive --branch 3.1_bugfix https://github.com/HaxeFoundation/haxe.git haxe-3.1
 cd haxe-3.1
 make
 ```
