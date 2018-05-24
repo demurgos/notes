@@ -14,9 +14,9 @@ Include the following lines in your `.bashrc` file:
 # Better prompt for a normal user
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
-    PS1='\e[32m\u@\h\e[0m \e[1m\w\e[0m\n\$ '
+    PS1='\e[32m\u@\h\e[0m \e[1m$(pwd)\e[0m\n\$ '
 else
-    PS1='\u@\h \w\n\$ '
+    PS1='\u@\h $(pwd)\n\$ '
 fi
 unset color_prompt
 ```
@@ -29,9 +29,9 @@ user account.
 # Better prompt for root
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
-    PS1='\e[31m\u@\h\e[0m \e[1m\w\e[0m\n\$ '
+    PS1='\e[31m\u@\h\e[0m \e[1m$(pwd)\e[0m\n\$ '
 else
-    PS1='\u@\h \w\n\$ '
+    PS1='\u@\h $(pwd)\n\$ '
 fi
 unset color_prompt
 ```
