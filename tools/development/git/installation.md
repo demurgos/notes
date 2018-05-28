@@ -28,20 +28,27 @@ Then see the [_Git_ configuration](./configuration.md) page.
 ## Windows
 
 [Download][git-download-win] the latest version of git for Windows.
-During the installation process, you will have the possibility to customize your configuration.
-Here are some recommended settings.
+
+Many of the default settings of the installer are there for historical reasons.
+You should follow the recommended settings below for a new installation.
 
 - Components
 
-  - Uncheck **Explorer integration**`
+  - Uncheck **Explorer integration** (see below)
+  - Check **Git LFS (Large File Support)**
   - Check **Associate .git\* configurations file with the default editor**
   - Check **Associate .sh files to be run with Bash**
-  
+  - Check **Check daily for Git for Windows updates**
+
   The explorer integration adds two entries to every contextual menu (right click) of the Windows
   Explorer. Since you should be able to use `git` from `cmd.exe` and that the GUI is not that
   good, I prefer to not enable the **Explorer integration**.
- 
-- Adjusting the PATH environment
+
+- Choosing the default editor used by Git
+
+  Select **Use Notepad++ as Git's default editor**.
+
+- Adjusting your PATH environment
 
   Choose **Use Git from the Windows Command Prompt**
   
@@ -54,6 +61,11 @@ Here are some recommended settings.
   Even if this is not the default option for Windows, having a consistent line endings style is
   valuable. [See line endings](../../../style/lines.md).
 
+- Configuring extra options
+
+  - Check **Enable file system caching**.
+  - Check **Enable Git Credential Manager**.
+  - Check **Enable symbolic links**.
 
 Then see the [_Git_ configuration](./configuration.md) page.
 
