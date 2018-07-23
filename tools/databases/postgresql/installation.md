@@ -10,11 +10,18 @@ su - postgres
 
 Then ?...
 
+## RHEL
+
+```sh
+# Run as root
+yum install postgresql postgresql-server
+su - postgres
+```
 
 ## Arch Linux
 
 ```shell
-# Run as root
+# Run as `root`
 pacman -S postgresql
 su - postgres
 ```
