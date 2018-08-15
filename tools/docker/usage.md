@@ -20,12 +20,14 @@ docker ps -a
 docker rmi -f <image-id-or-name>
 ```
 
-## Remove all containers and images
+## Remove all containers, images, volumes, etc (full clean-up)
 
 ```shell
 # Run as a normal user
+docker kill $(docker ps -q)
 docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
+docker volume rm $(docker volume ls -qf dangling=true)
 ```
 
 ## Build an image
