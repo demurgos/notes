@@ -63,7 +63,7 @@ to [the main Haxe repository][github-haxe].
 # Run as a normal user
 git clone --recursive --branch 3.1_bugfix https://github.com/HaxeFoundation/haxe.git haxe-3.1
 cd haxe-3.1
-make
+OCAMLPARAM="safe-string=0,_" make
 ```
 
 ## Installation and configuration
