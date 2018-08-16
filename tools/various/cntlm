@@ -1,0 +1,31 @@
+# CNTLM
+
+https://github.com/Evengard/cntlm
+
+CNTLM is a reverse proxy supporting authentification. It can help with proxy issues behind corporate proxies...
+
+## Installation
+
+TODO
+
+## Configuration
+
+Edit `/etc/cntlm.conf`. For example set `Username`, `Password`, `Proxy` and `NoProxy`.
+
+## Auto-start
+
+(systemd)
+
+```
+$ cat /etc/systemd/system/cntlm.service 
+[Unit]
+Description=Job starting cntlm (local proxy) at boot
+
+[Service]
+ExecStart=/usr/sbin/cntlm
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
