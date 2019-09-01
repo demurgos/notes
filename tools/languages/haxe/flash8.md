@@ -55,9 +55,7 @@ brew install camlp4 neko ocaml xquartz
 
 ## Compilation
 
-To use Haxe 3.1, you will need to compile [the `3.1_bugfix` branch of Haxe from my
-fork][github-demurgos-haxe-3.1_bugfix]. There is [an open issue][issue-bugfix] to add this branch
-to [the main Haxe repository][github-haxe].
+To use Haxe 3.1, you will need to compile [the `3.1_bugfix` branch][github-haxe-3.1_bugfix].
 
 ```shell
 # Run as a normal user
@@ -233,7 +231,6 @@ haxelib install svg 1.1.1
 
 [camlp4-home]: https://github.com/ocaml/camlp4
 [git-home]: https://git-scm.com/
-[github-demurgos-haxe-3.1_bugfix]: https://github.com/demurgos/haxe/tree/3.1_bugfix
 [github-haxe]: https://github.com/HaxeFoundation/haxe
 [github-haxe-3.1_bugfix]: https://github.com/HaxeFoundation/haxe/tree/3.1_bugfix
 [haxe-3.1.3]: https://haxe.org/download/version/3.1.3/

@@ -31,9 +31,12 @@ Create "virtual" users to run some tasks with restricted rights. For example, fo
 #   The group (name or number) of the user's initial login group. The groupe must exist.
 # --home-dir
 #   The user's login directory.
+# -s
+#   Login shell.
 # -M
-#   Do no create the user's home directory. (TODO: check, maybe it's just "do not populate home with default files")
-useradd demurgos.net --gid web --home-dir /var/www/demurgos.net -M
+#   Do no create the user's home directory.
+useradd demurgos.net --gid web --home-dir /var/www/demurgos.net -s /bin/bash -M
+useradd hamm4all.eternalfest.net --gid web --home-dir /var/www/hamm4all.eternalfest.net -s /bin/bash -M
 ```
 
 ## Add group
