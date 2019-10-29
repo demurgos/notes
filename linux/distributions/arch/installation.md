@@ -110,8 +110,8 @@ See [partitions](../../partitions.md) to find which configuration you need.
 
 ### Parted
 
-To configure the partitions of the devide `<device-block>`, start an interactive _parted_ session.
-You can quite it with an `EOF` character on a blank line (`Ctrl` + `D`) or `quit`.
+To configure the partitions of the device `<device-block>`, start an interactive _parted_ session.
+You can quit it with an `EOF` character on a blank line (`Ctrl` + `D`) or `quit`.
 
 ```shell
 # Run as root
@@ -144,7 +144,7 @@ Create a partition:
 mkpart <partition-type> <fs-type> <start-offset> <end-offset>
 ```
 - start-offset: Offset since the start of the disk: decimal number followed by a unit (`s` - sectors, `B`, `GiB`, `MiB`)
-- end-offset: Offset since **the start of the dist**: decimal number followed by a unit. You can use `100%` to match the end.
+- end-offset: Offset since **the start of the disk**: decimal number followed by a unit. You can use `100%` to match the end.
 
 #### UEFI Boot partition
 
