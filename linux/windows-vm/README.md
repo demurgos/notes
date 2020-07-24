@@ -27,7 +27,14 @@ systemctl start libvirtd
 
 ## VM installation
 
-/data/softwares/Win10_1909_English_x64.iso
+![Install 1](./install-1.png)
+![Install 2](./install-2.png)
+![Install 3](./install-3.png)
+![Install 4](./install-4.png)
+![Install 5](./install-5.png)
+![Install 6](./install-6.png)
+
+After this, the installation starts. At the end, the VM restarts.
 
 ## References
 
