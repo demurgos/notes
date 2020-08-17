@@ -1,0 +1,14 @@
+[user]
+	name = Charles Samborski
+	email = demurgos@demurgos.net
+	signingkey = 953611233A8B92E0
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = true
+[core]
+	autocrlf = input
+[commit]
+	gpgsign = true
+[credential]
+	helper = cache

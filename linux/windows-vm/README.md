@@ -36,6 +36,15 @@ systemctl start libvirtd
 
 After this, the installation starts. At the end, the VM restarts.
 
+## Network configuration
+
+Make sure that the `default` network starts automatically when running `systemctl start libvirtd`.
+
+```
+virsh net-list --all
+virsh net-autostart default
+```
+
 ## References
 
 - https://binarydebt.wordpress.com/2018/10/14/intel-virtualisation-how-vt-x-kvm-and-qemu-work-together/

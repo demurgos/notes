@@ -1,0 +1,10 @@
+#
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+# /dev/nvme0n1p3
+UUID=0e4a428a-19a6-4684-ba68-8b3906e7b388	/         	ext4      	rw,relatime,data=ordered	0 1
+
+# /dev/nvme0n1p1
+UUID=FEAE-B335      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro	0 2
+

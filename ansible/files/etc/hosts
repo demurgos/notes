@@ -1,0 +1,30 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+#<ip-address>	<hostname.domain.org>	<hostname>
+127.0.0.1	localhost.localdomain	localhost
+::1		localhost.localdomain	localhost
+::1             red.localdomain         red
+
+# Development
+
+::1                                     demurgos.localhost
+::1                                     eternalfest.localhost
+::1                                     api.eternalfest.localhost
+::1                                     files.eternalfest.localhost
+::1                                     play.eternalfest.localhost
+::1                                     wiki.localhost
+127.0.0.1                               wiki.localhost
+::1                                     laracine.localhost
+127.0.0.1                               laracine.localhost
+127.0.0.1                               myhordes.localhost
+
+# Adobe blocker
+127.0.0.1 lmlicenses.wip4.adobe.com
+127.0.0.1 lm.licenses.adobe.com
+::1 lmlicenses.wip4.adobe.com
+::1 lm.licenses.adobe.com
+127.0.0.1 avmore
+
+# End of file

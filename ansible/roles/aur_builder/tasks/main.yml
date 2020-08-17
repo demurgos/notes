@@ -1,0 +1,34 @@
+---
+- name: "AUR Builder | {{ aur_builder_package_name }} | Ensure the group `aur_builder` exists"
+  group:
+    name: "aur_builder"
+    state: "present"
+
+- name: "AUR Builder | {{ aur_builder_package_name }} | Ensure the user `aur_builder` exists"
+  user:
+    name: "aur_builder"
+    comment: "AUR builder"
+    group: "aur_builder"
+    append: no
+    state: "present"
+    shell: "/bin/bash"
+    system: yes
+    create_home: no
+    home: "/home/aur_builder"
+
+- name: "AUR Builder | {{ aur_builder_package_name }} | Create the `/home/aur_builder` directory"
+  file:
+    path: "/home/aur_builder"
+    state: "directory"
+    owner: "aur_builder"
+    group: "aur_builder"
+    mode: "u=rwx,g=rx,o=rx"
+
+- name: "AUR Builder | {{ aur_builder_package_name }} | Ensure the package is available"
+  become: yes
+  become_user: aur_builder
+  aur:
+    name: "{{ aur_builder_package_name }}"
+    skip_installed: no
+    skip_pgp_check: no
+    use: "makepkg"

@@ -1,0 +1,125 @@
+---
+#- hosts: "all"
+#  become: yes
+#  become_user: "root"
+#  tasks:
+#    - name: "Update the system"
+#      pacman:
+#        update_cache: yes
+#        upgrade: yes
+#
+#    - name: "Install system packages"
+#      pacman:
+#        name:
+#          - "base"
+#          - "base-devel"
+#          - "git"
+#          - "nano"
+##          - "nginx-mainline"
+#          - "nodejs"
+##          - "pm2"
+#          - "python2"
+#          - "rsync"
+#          - "yarn"
+#        state: "present"
+#        update_cache: yes
+
+- hosts: "all"
+  become: yes
+  become_user: "root"
+  tasks:
+    - loop:
+        - {package: "keeweb"}
+        - {package: "minecraft-launcher"}
+      name: "Install core AUR packages: {{item.package}}"
+      include_role:
+        name: "aur_builder"
+      vars:
+        aur_builder_package_name: "{{item.package}}"
+#
+#    - name: "Download repositories"
+#      loop:
+#        - {path: "eternalfest/efc", upstream: "git@gitlab.com:eternalfest/efc.git", origin: "git@gitlab.com:demurgos/efc.git"}
+#        - {path: "eternalfest/hammerfest-api", upstream: "git@gitlab.com:eternalfest/hammerfest-api.git", origin: "git@gitlab.com:demurgos/hammerfest-api.git"}
+#      file:
+#        path: "/data/projects/eternalfest/efc"
+#        state: "directory"
+#
+#    - name: "Ensure the directory exists"
+#      file:
+#        path: "/data/projects/eternalfest/efc"
+#        state: "directory"
+#
+#    - name: "Ensure the directory is a Git repository"
+#      command:
+#        chdir: "/data/projects/eternalfest/efc"
+#        argv:
+#          - "git"
+#          - "init"
+#          - "/data/projects/eternalfest/efc"
+#
+#    - name: "Read the `remote.upstream.url` config"
+#      git_config:
+#        repo: "/data/projects/eternalfest/efc"
+#        scope: "local"
+#        name: "remote.upstream.url"
+#      register: "git_upstream"
+#
+##    - name: "Debug `remote.upstream`"
+##      debug:
+##        var: "git_upstream"
+#
+#    - name: "Add the upstream URL"
+#      when: "git_upstream.config_value == ''"
+#      command:
+#        chdir: "/data/projects/eternalfest/efc"
+#        argv:
+#          - "git"
+#          - "remote"
+#          - "add"
+#          - "upstream"
+#          - "git@gitlab.com:eternalfest/efc.git"
+#
+#    - name: "Read the `remote.origin.url` config"
+#      git_config:
+#        repo: "/data/projects/eternalfest/efc"
+#        scope: "local"
+#        name: "remote.origin.url"
+#      register: "git_origin"
+#
+#    - name: "Add the origin URL"
+#      when: "git_origin.config_value == ''"
+#      command:
+#        chdir: "/data/projects/eternalfest/efc"
+#        argv:
+#          - "git"
+#          - "remote"
+#          - "add"
+#          - "origin"
+#          - "git@gitlab.com:demurgos/efc.git"
+#
+#    - name: "Fetch all"
+#      command:
+#        chdir: "/data/projects/eternalfest/efc"
+#        argv:
+#          - "git"
+#          - "fetch"
+#          - "--all"
+#
+#    - name: "Track upstream/master"
+#      command:
+#        chdir: "/data/projects/eternalfest/efc"
+#        argv:
+#          - "git"
+#          - "fetch"
+#          - "upstream"
+#          - "master:master"
+
+#    - name: "Track upstream/master"
+#      command:
+#        chdir: "/data/projects/eternalfest/efc"
+#        argv:
+#          - "git"
+#          - "update-ref"
+#          - "refs/heads/master"
+#          - "upstream/master"

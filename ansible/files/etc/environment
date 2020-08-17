@@ -1,0 +1,17 @@
+#
+# This file is parsed by the pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+#
+
+AIR_HOME="/opt/adobe-air/"
+ANDROID_HOME="/opt/android/sdk/"
+ANT_HOME="/usr/share/apache-ant/"
+CUDA_HOME="/opt/cuda"
+FLASHPLAYER_DEBUGGER="/opt/flashplayer/flashplayerdebugger"
+HAXE_STD_PATH="/usr/lib/haxe/std/:."
+PLAYERGLOBAL_HOME="/opt/flashplayer/lib/playerglobal/"
+PYSPARK_PYTHON="python3"
+TLF_HOME="/opt/flex-tlf/"
+CHROME_BIN="chromium"
+PRIMUS_UPLOAD=1
