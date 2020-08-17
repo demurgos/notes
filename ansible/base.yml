@@ -29,14 +29,56 @@
   become_user: "root"
   tasks:
     - loop:
+        - {package: "anaconda"}
+        - {package: "ansible-aur-git"}
+        - {package: "autokey-py3"}
+        - {package: "cloog-git"}
+        - {package: "cuda-8.0"}
+        - {package: "drawio-desktop"}
+        - {package: "dxvk-git"}
+        - {package: "firefox-esr-bin"}
+        - {package: "gcc5"}
+        - {package: "ghidra-git"}
+        - {package: "gitkraken"}
+        - {package: "jmtpfs"}
         - {package: "keeweb"}
+        - {package: "libc++"}
+        - {package: "lprng"}
         - {package: "minecraft-launcher"}
+        - {package: "minecraft-server"}
+        - {package: "mingw-w64-binutils"}
+        - {package: "mingw-w64-crt"}
+        - {package: "mingw-w64-gcc"}
+        - {package: "mingw-w64-gcc-base"}
+        - {package: "mingw-w64-headers"}
+        - {package: "mingw-w64-headers-bootstrap"}
+        - {package: "mingw-w64-winpthreads"}
+        - {package: "ncurses5-compat-libs"}
+        - {package: "nvidia-xrun"}
+        - {package: "nvm"}
+        - {package: "optimus-manager"}
+        - {package: "optimus-manager-qt"}
+        - {package: "osh"}
+        - {package: "parsec-bin"}
+        - {package: "popcorntime"}
+        - {package: "protontricks"}
+        - {package: "python-vdf"}
+        - {package: "skypeforlinux-bin"}
+        - {package: "skypeforlinux-stable-bin"}
+        - {package: "swfmill-git"}
+        - {package: "tectonic"}
+        - {package: "ttf-font-awesome-4"}
+        - {package: "verdaccio"}
+        - {package: "virtaal"}
+        - {package: "wine-staging-git"}
+        - {package: "yay"}
+        - {package: "zoom"}
       name: "Install core AUR packages: {{item.package}}"
       include_role:
         name: "aur_builder"
       vars:
         aur_builder_package_name: "{{item.package}}"
-#
+
 #    - name: "Download repositories"
 #      loop:
 #        - {path: "eternalfest/efc", upstream: "git@gitlab.com:eternalfest/efc.git", origin: "git@gitlab.com:demurgos/efc.git"}
